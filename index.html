@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sincere Apology from Woji to Arissa</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        wine: {
+                            950: '#140305',
+                            900: '#1f0407',
+                            800: '#2d080c',
+                            700: '#4a0e14',
+                        },
+                        rosegold: {
+                            100: '#fcf2f2',
+                            200: '#f5e1e2',
+                            300: '#e8b4b8',
+                            400: '#d4a3a6',
+                            500: '#b87c80',
+                        },
+                        champagne: '#f3e5d8'
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #1a0305;
+            color: #f5e1e2;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Glassmorphism Velvet Style */
+        .glass-card {
+            background: rgba(45, 8, 12, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(232, 180, 184, 0.2);
+            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.6);
+        }
+
+        .glass-card-subtle {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(232, 180, 184, 0.12);
+        }
+
+        /* Ambient Background Glows */
+        .ambient-glow {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Polaroid Custom Frame */
+        .polaroid-frame {
+            background: #ffffff;
+            color: #1f0407;
+            padding: 12px 12px 28px 12px;
+            box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.5);
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+        }
+
+        .polaroid-frame:hover {
+            transform: translateY(-8px) rotate(0deg) !important;
+            box-shadow: 0 25px 45px -10px rgba(212, 163, 166, 0.3);
+        }
+
+        /* Floating Particle Hearts */
+        @keyframes subtleFloat {
+            0% { transform: translateY(0) scale(0.9); opacity: 0.2; }
+            50% { opacity: 0.5; }
+            100% { transform: translateY(-100vh) scale(1.1); opacity: 0; }
+        }
+
+        .floating-heart {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1;
+            animation: subtleFloat linear infinite;
+        }
+
+        /* Button Glow pulse */
+        @keyframes goldGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(212, 163, 166, 0.25); }
+            50% { box-shadow: 0 0 35px rgba(212, 163, 166, 0.5); }
+        }
+
+        .btn-glow {
+            animation: goldGlow 3s infinite ease-in-out;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col justify-between relative selection:bg-wine-800 selection:text-rosegold-200">
+
+    <div class="ambient-glow w-[500px] h-[500px] bg-wine-800/40 -top-32 -left-32"></div>
+    <div class="ambient-glow w-[600px] h-[600px] bg-wine-900/50 -bottom-40 -right-40"></div>
+    <div id="hearts-container" class="fixed inset-0 pointer-events-none z-0"></div>
+
+    <!-- AUDIO TOGGLE BUTTON -->
+    <div class="fixed top-5 right-5 z-40">
+        <button id="audio-toggle-btn" onclick="toggleMusic()" class="glass-card-subtle px-4 py-2 rounded-full text-xs font-medium tracking-wider text-rosegold-200 hover:text-white flex items-center gap-2 border border-rosegold-400/20 transition-all duration-300 shadow-lg cursor-pointer">
+            <svg id="music-icon" class="w-3.5 h-3.5 fill-current text-rosegold-300" viewBox="0 0 24 24">
+                <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+            </svg>
+            <span id="audio-btn-text">Play Romantic Ambient</span>
+        </button>
+    </div>
+
+    <!-- MAIN CONTENT WRAPPER -->
+    <main class="max-w-2xl mx-auto px-4 py-12 sm:py-16 relative z-10 w-full my-auto space-y-10">
+
+        <!-- HEADER TITLE -->
+        <header class="text-center space-y-4">
+            <div class="inline-flex items-center gap-2 px-5 py-1.5 rounded-full bg-wine-900/90 border border-rosegold-400/30 text-rosegold-300 text-xs font-medium uppercase tracking-widest shadow-sm">
+                <span class="text-rosegold-400">♥</span>
+                <span>Sincere Apology from Woji</span>
+                <span class="text-rosegold-400">♥</span>
+            </div>
+
+            <h1 class="font-serif text-3xl sm:text-5xl font-normal text-rosegold-100 leading-tight tracking-wide">
+                For My Beloved Arissa
+            </h1>
+            
+            <p class="font-serif italic text-rosegold-300 text-base sm:text-xl font-light max-w-xl mx-auto leading-relaxed">
+                "Darling, I am truly, deeply sorry."
+            </p>
+        </header>
+
+        <!-- APOLOGY LETTER CARD -->
+        <section class="glass-card rounded-2xl p-7 sm:p-10 space-y-6 text-rosegold-100 text-sm sm:text-base leading-relaxed font-light">
+            
+            <p class="first-letter:text-4xl first-letter:font-serif first-letter:text-rosegold-300 first-letter:mr-1 first-letter:float-left">
+                I know I was wrong. I hate seeing us like this, especially with the distance between us. I really don't want you to be upset or hurt.
+            </p>
+
+            <p>
+                My intention was only to guide and protect you, but I realize the way I said it was wrong. I am so sorry, my love. I just don't want anyone else taking advantage of you. I know my thoughts might seem far-fetched to you, but as a guy, I know how men look at women.
+            </p>
+
+            <div class="py-3 px-5 rounded-xl bg-wine-950/70 border-l-2 border-rosegold-400 text-rosegold-200 font-serif italic text-base sm:text-lg">
+                Please believe me, darling. I just want to ensure nobody ever takes advantage of you. <span class="font-semibold text-rosegold-300 not-italic uppercase tracking-wider text-xs block sm:inline mt-1 sm:mt-0">You are mine.</span>
+            </div>
+
+            <p>
+                I've had painful past experiences, and that's why I reacted so strongly. I never want something like that to happen to you. I don't want you to ever feel regret, because time can never be turned back, my love.
+            </p>
+
+        </section>
+
+        <!-- DAYS TOGETHER COUNTER (EXACTLY 189 DAYS) -->
+        <section class="glass-card rounded-2xl p-6 sm:p-8 text-center space-y-5">
+            <div class="flex items-center justify-center gap-2 border-b border-rosegold-400/15 pb-4">
+                <span class="text-rosegold-400 text-xs">♥</span>
+                <span class="font-serif text-xl sm:text-2xl text-rosegold-100 tracking-wide">Days Together</span>
+                <span class="text-rosegold-400 text-xs">♥</span>
+            </div>
+
+            <div class="grid grid-cols-4 gap-3 sm:gap-4 max-w-md mx-auto pt-2">
+                <div class="glass-card-subtle p-3 sm:p-4 rounded-xl">
+                    <span id="counter-days" class="font-serif text-2xl sm:text-4xl font-normal text-rosegold-200 block">189</span>
+                    <span class="text-[10px] sm:text-xs text-rosegold-400 font-medium uppercase tracking-widest mt-1 block">Days</span>
+                </div>
+                <div class="glass-card-subtle p-3 sm:p-4 rounded-xl">
+                    <span id="counter-hours" class="font-serif text-2xl sm:text-4xl font-normal text-rosegold-200 block">0</span>
+                    <span class="text-[10px] sm:text-xs text-rosegold-400 font-medium uppercase tracking-widest mt-1 block">Hours</span>
+                </div>
+                <div class="glass-card-subtle p-3 sm:p-4 rounded-xl">
+                    <span id="counter-minutes" class="font-serif text-2xl sm:text-4xl font-normal text-rosegold-200 block">0</span>
+                    <span class="text-[10px] sm:text-xs text-rosegold-400 font-medium uppercase tracking-widest mt-1 block">Mins</span>
+                </div>
+                <div class="glass-card-subtle p-3 sm:p-4 rounded-xl">
+                    <span id="counter-seconds" class="font-serif text-2xl sm:text-4xl font-normal text-rosegold-200 block">0</span>
+                    <span class="text-[10px] sm:text-xs text-rosegold-400 font-medium uppercase tracking-widest mt-1 block">Secs</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- PHOTO MEMORIES -->
+        <section class="space-y-4">
+            <div class="text-center">
+                <span class="text-xs uppercase tracking-widest text-rosegold-400 font-semibold">Precious Moments Of Us</span>
+            </div>
+            
+            <div class="grid grid-cols-3 gap-3 sm:gap-5 pt-2">
+                <!-- Polaroid Frame 1 -->
+                <div class="polaroid-frame -rotate-2 rounded-sm cursor-pointer" onclick="triggerPhotoUpload(1)">
+                    <div class="w-full h-28 sm:h-44 bg-wine-950 rounded-sm overflow-hidden relative group">
+                        <img id="img-1" src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=600&q=80" alt="Memory 1" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-wine-950/60 opacity-0 group-hover:opacity-100 flex items-center justify-center text-rosegold-100 text-[10px] sm:text-xs font-light transition duration-300">
+                            Change Image
+                        </div>
+                    </div>
+                    <p class="text-center font-serif italic text-xs sm:text-sm text-wine-900 mt-2 sm:mt-3">Memories with you</p>
+                </div>
+
+                <!-- Polaroid Frame 2 -->
+                <div class="polaroid-frame rotate-1 rounded-sm cursor-pointer" onclick="triggerPhotoUpload(2)">
+                    <div class="w-full h-28 sm:h-44 bg-wine-950 rounded-sm overflow-hidden relative group">
+                        <img id="img-2" src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=600&q=80" alt="Memory 2" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-wine-950/60 opacity-0 group-hover:opacity-100 flex items-center justify-center text-rosegold-100 text-[10px] sm:text-xs font-light transition duration-300">
+                            Change Image
+                        </div>
+                    </div>
+                    <p class="text-center font-serif italic text-xs sm:text-sm text-wine-900 mt-2 sm:mt-3">Your smile is my home</p>
+                </div>
+
+                <!-- Polaroid Frame 3 -->
+                <div class="polaroid-frame -rotate-1 rounded-sm cursor-pointer" onclick="triggerPhotoUpload(3)">
+                    <div class="w-full h-28 sm:h-44 bg-wine-950 rounded-sm overflow-hidden relative group">
+                        <img id="img-3" src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=600&q=80" alt="Memory 3" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-wine-950/60 opacity-0 group-hover:opacity-100 flex items-center justify-center text-rosegold-100 text-[10px] sm:text-xs font-light transition duration-300">
+                            Change Image
+                        </div>
+                    </div>
+                    <p class="text-center font-serif italic text-xs sm:text-sm text-wine-900 mt-2 sm:mt-3">Forever & always</p>
+                </div>
+            </div>
+            
+            <input type="file" id="file-input" class="hidden" accept="image/*">
+            <p class="text-center text-[11px] text-rosegold-400/60 italic">Tap any photo frame to upload your favorite picture</p>
+        </section>
+
+        <!-- DECISION & EVASIVE BUTTON GAME SECTION -->
+        <section class="glass-card rounded-2xl p-8 sm:p-10 text-center space-y-8 relative overflow-hidden" id="decision-container">
+            <div class="space-y-2">
+                <h2 class="font-serif text-3xl sm:text-4xl font-normal text-rosegold-100 tracking-wide">
+                    Darling, please forgive me...
+                </h2>
+                <p class="text-xs text-rosegold-300/70 uppercase tracking-widest font-light">My heart belongs only to you</p>
+            </div>
+
+            <!-- BUTTONS CONTAINER -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-6 min-h-[140px] relative px-4" id="arena">
+                
+                <!-- FORGIVE ME (PRIMARY YES BUTTON) -->
+                <button id="yes-btn" onclick="handleForgiveness()" class="btn-glow bg-gradient-to-r from-rosegold-400 via-rosegold-300 to-rosegold-400 hover:from-rosegold-300 hover:to-rosegold-200 text-wine-950 font-semibold text-base px-10 py-4 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-105 active:scale-95 w-full sm:w-auto z-20 cursor-pointer">
+                    Forgive me
+                </button>
+
+                <!-- I DON'T WANT TO FORGIVE YOU (EVASIVE IMPOSSIBLE TO CLICK BUTTON) -->
+                <button id="no-btn" 
+                        onmouseover="dodgeButton()"
+                        ontouchstart="dodgeButton(event)"
+                        onclick="dodgeButton(event)"
+                        class="glass-card-subtle hover:bg-wine-800/40 text-rosegold-300 font-light text-sm px-8 py-3.5 rounded-full transition-all duration-200 ease-out w-full sm:w-auto border border-rosegold-400/20 z-10 cursor-pointer select-none">
+                    I don't want to forgive you
+                </button>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="py-8 text-center text-xs text-rosegold-400/50 font-light tracking-widest uppercase relative z-10">
+        Created with love for Arissa
+    </footer>
+
+    <!-- SUCCESS CELEBRATION POPUP MODAL -->
+    <div id="celebration-modal" class="fixed inset-0 bg-wine-950/85 backdrop-blur-xl z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-500">
+        <div class="glass-card bg-wine-900/95 rounded-3xl p-8 sm:p-12 text-center max-w-md w-full space-y-6 shadow-2xl transform scale-90 transition-transform duration-500 border border-rosegold-400/30" id="modal-card">
+            
+            <div class="w-16 h-16 bg-rosegold-400/10 rounded-full flex items-center justify-center mx-auto text-rosegold-300 text-2xl border border-rosegold-400/20">
+                ♥
+            </div>
+
+            <div class="space-y-3">
+                <h3 class="font-serif text-3xl sm:text-4xl font-normal text-rosegold-100 tracking-wide">
+                    yay, thankyou. Arissa!
+                </h3>
+                <p class="text-xs sm:text-sm text-rosegold-200/80 leading-relaxed font-light pt-1">
+                    I promise to always treasure you, protect you, and love you with everything I have.
+                </p>
+            </div>
+
+            <button onclick="finalLoveAction()" class="btn-glow bg-gradient-to-r from-rosegold-400 to-rosegold-300 hover:from-rosegold-300 hover:to-rosegold-200 text-wine-950 font-semibold text-sm sm:text-base px-8 py-4 rounded-full shadow-xl transition-all duration-300 active:scale-95 w-full cursor-pointer">
+                iloveyouuuusooomuchh sayang
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // WEB AUDIO SYNTHESIZER (Gentle Ambient Chime Music Box)
+        let audioCtx = null;
+        let isPlaying = false;
+        let audioTimer = null;
+
+        function playRomanticChime() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+
+            const freqs = [329.63, 392.00, 493.88, 587.33, 659.25, 783.99, 987.77];
+            const randomFreq = freqs[Math.floor(Math.random() * freqs.length)];
+
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(randomFreq, audioCtx.currentTime);
+
+            gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+            gain.gain.linearRampToValueAtTime(0.04, audioCtx.currentTime + 0.1);
+            gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 2.5);
+
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            osc.start();
+            osc.stop(audioCtx.currentTime + 2.5);
+        }
+
+        function toggleMusic() {
+            const btnText = document.getElementById('audio-btn-text');
+            if (isPlaying) {
+                clearInterval(audioTimer);
+                isPlaying = false;
+                btnText.innerText = 'Play Romantic Ambient';
+            } else {
+                if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+                
+                playRomanticChime();
+                audioTimer = setInterval(playRomanticChime, 800);
+                isPlaying = true;
+                btnText.innerText = 'Pause Ambient';
+            }
+        }
+
+        // DAYS TOGETHER COUNTER LOGIC (EXACT BASELINE: 189 DAYS)
+        const baseDays = 189;
+        const pageLoadTime = new Date();
+
+        function updateCounter() {
+            const now = new Date();
+            const elapsedMs = now - pageLoadTime;
+
+            const days = baseDays;
+            const hours = Math.floor((elapsedMs / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((elapsedMs / (1000 * 60)) % 60);
+            const seconds = Math.floor((elapsedMs / 1000) % 60);
+
+            document.getElementById('counter-days').innerText = days;
+            document.getElementById('counter-hours').innerText = hours;
+            document.getElementById('counter-minutes').innerText = minutes;
+            document.getElementById('counter-seconds').innerText = seconds;
+        }
+
+        setInterval(updateCounter, 1000);
+        updateCounter();
+
+        // EVASIVE "I DON'T WANT TO FORGIVE YOU" BUTTON LOGIC
+        function dodgeButton(e) {
+            if (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            const noBtn = document.getElementById('no-btn');
+            const container = document.getElementById('decision-container');
+            
+            const containerRect = container.getBoundingClientRect();
+            const btnRect = noBtn.getBoundingClientRect();
+
+            const padding = 20;
+            const maxX = (containerRect.width / 2) - (btnRect.width / 2) - padding;
+            const maxY = 120;
+
+            const randomX = (Math.random() - 0.5) * (maxX * 2);
+            const randomY = (Math.random() - 0.5) * (maxY * 2);
+
+            noBtn.style.position = 'relative';
+            noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+        }
+
+        // Track cursor proximity to dodge smoothly before cursor touches the button
+        document.addEventListener('mousemove', (e) => {
+            const noBtn = document.getElementById('no-btn');
+            if (!noBtn) return;
+            
+            const rect = noBtn.getBoundingClientRect();
+            const distance = Math.hypot(
+                e.clientX - (rect.left + rect.width / 2),
+                e.clientY - (rect.top + rect.height / 2)
+            );
+
+            if (distance < 110) {
+                dodgeButton();
+            }
+        });
+
+        // FORGIVENESS CELEBRATION
+        function handleForgiveness() {
+            if (!isPlaying) toggleMusic();
+
+            // Heart Confetti Burst
+            confetti({
+                particleCount: 120,
+                spread: 100,
+                origin: { y: 0.6 },
+                colors: ['#e8b4b8', '#d4a3a6', '#f3e5d8', '#ffffff']
+            });
+
+            // Open Modal
+            const modal = document.getElementById('celebration-modal');
+            const modalCard = document.getElementById('modal-card');
+
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modalCard.classList.remove('scale-90');
+            modalCard.classList.add('scale-100');
+        }
+
+        function finalLoveAction() {
+            const duration = 3 * 1000;
+            const end = Date.now() + duration;
+
+            (function frame() {
+                confetti({
+                    particleCount: 7,
+                    angle: 60,
+                    spread: 60,
+                    origin: { x: 0 },
+                    colors: ['#d4a3a6', '#e8b4b8', '#f3e5d8']
+                });
+                confetti({
+                    particleCount: 7,
+                    angle: 120,
+                    spread: 60,
+                    origin: { x: 1 },
+                    colors: ['#d4a3a6', '#e8b4b8', '#f3e5d8']
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            })();
+
+            const modalCard = document.getElementById('modal-card');
+            modalCard.innerHTML = `
+                <div class="space-y-4 py-4">
+                    <div class="text-rosegold-300 text-4xl">♥</div>
+                    <h3 class="font-serif text-3xl font-normal text-rosegold-100">I love you endlessly, Arissa</h3>
+                    <p class="text-rosegold-200/80 text-xs font-light">Thank you for forgiving Woji...</p>
+                </div>
+            `;
+        }
+
+        // PHOTO UPLOAD FUNCTIONALITY
+        let currentSlot = 1;
+        function triggerPhotoUpload(slot) {
+            currentSlot = slot;
+            document.getElementById('file-input').click();
+        }
+
+        document.getElementById('file-input').addEventListener('change', function (e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (event) {
+                    document.getElementById(`img-${currentSlot}`).src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // BACKGROUND PARTICLES GENERATOR
+        function spawnFloatingHeart() {
+            const container = document.getElementById('hearts-container');
+            const heart = document.createElement('div');
+            heart.innerText = '♥';
+            heart.className = 'floating-heart text-rosegold-400 text-xs';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 6 + 8) + 's';
+            heart.style.opacity = (Math.random() * 0.3 + 0.1).toString();
+
+            container.appendChild(heart);
+            setTimeout(() => heart.remove(), 12000);
+        }
+
+        setInterval(spawnFloatingHeart, 1200);
+    </script>
+</body>
+</html>
